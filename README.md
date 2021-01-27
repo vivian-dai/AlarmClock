@@ -5,4 +5,5 @@ beep beep beep
 - [ ] overrides volume settings to always use max volume
 - [ ] allows user to set the time(s)
 - [ ] tts for a random later time than the actual time
+- [ ] creating the entire app :D
 ### ~~vivian~~ sherwin is a genius
