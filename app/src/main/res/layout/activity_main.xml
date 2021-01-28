@@ -12,7 +12,7 @@
         android:clipToPadding="false"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/recycler_view_item" >
+        tools:listitem="@layout/alarm_recycler_view" >
 
     </androidx.recyclerview.widget.RecyclerView>
 
