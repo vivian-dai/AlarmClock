@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">AlarmClock</string>
+    <string name="_12_00">12:00</string>
+    <string name="clock">clock</string>
+
+    <string-array name="times">
+        <item>12:00</item>
+        <item>15:00</item>
+        <item>17:00</item>
+        <item>20:00</item>
+        <item>21:00</item>
+    </string-array>
 </resources>
