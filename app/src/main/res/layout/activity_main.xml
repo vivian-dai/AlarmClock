@@ -21,7 +21,8 @@
         android:layout_alignLeft="@id/alarm_button"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="100dp"
-        android:text="@string/timer_tab" />
+        android:text="@string/timer_tab"
+        android:layout_alignStart="@id/alarm_button" />
 
     <Button
         android:id="@+id/stopwatch_button"
@@ -33,15 +34,31 @@
         android:text="@string/stopwatch_tab" />
 
     <!--recycler view-->
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/alarm_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:padding="4dp"
+        android:paddingTop="50dp"
+        android:paddingBottm="50dp"
+        android:padding="5dp"
         tools:listitem="@layout/alarm_recycler_view">
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <Button
+        android:id="@+id/add_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
+        android:background="#FFFFFF"
+        android:text="+" />
 
 
 </RelativeLayout>
