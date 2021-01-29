@@ -1,5 +1,7 @@
 package com.v341196137.alarmclock
-
+// Kotlin libraries
+import
+// Android libraries
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -19,23 +21,24 @@ class MainActivity : AppCompatActivity() {
         val stopwatchButton: Button = findViewById(R.id.stopwatch_button)
 
         //button listeners
-        alarmButton.setOnClickListener(){ switchToAlarm()}
-        timerButton.setOnClickListener(){switchToTimer()}
-        stopwatchButton.setOnClickListener(){ switchToStopwatch()}
+        alarmButton.setOnClickListener() { switchToAlarm() }
+        timerButton.setOnClickListener() { switchToTimer() }
+        stopwatchButton.setOnClickListener() { switchToStopwatch() }
 
     }
-}
+    private fun generateList
 
-
+    // i think you can just do setContentView(R.layout.______)
 //TODO: hahahaha implement all this
-fun switchToAlarm(){
+    fun switchToAlarm() {
 
-}
+    }
 
-fun switchToTimer(){
+    fun switchToTimer() {
 
-}
+    }
 
-fun switchToStopwatch(){
+    fun switchToStopwatch() {
 
+    }
 }

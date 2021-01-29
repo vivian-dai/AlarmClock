@@ -2,7 +2,9 @@
     <string name="app_name">AlarmClock</string>
     <string name="_12_00">12:00</string>
     <string name="clock">clock</string>
-
+    <string name="alarm_tab">ALARM</string>
+    <string name="timer_tab">TIMER</string>
+    <string name="stopwatch_tab">STOPWATCH</string>
     <string-array name="times">
         <item>12:00</item>
         <item>15:00</item>
