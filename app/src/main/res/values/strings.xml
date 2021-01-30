@@ -5,6 +5,11 @@
     <string name="alarm_tab">ALARM</string>
     <string name="timer_tab">TIMER</string>
     <string name="stopwatch_tab">STOPWATCH</string>
+    <string name="add">add</string>
+    <string name="cancel">cancel</string>
+    <string name="new_alarm">New Alarm</string>
+    <string name="arrow"><![CDATA[<---]]></string>
+    <string name="plus_sign">+</string>
     <string-array name="hours">
         <item>00</item>
         <item>01</item>

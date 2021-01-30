@@ -9,7 +9,7 @@
         android:id="@+id/confirm_alarm_button"
         android:layout_width="200dp"
         android:layout_height="46dp"
-        android:text="add"
+        android:text="@string/add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -25,10 +25,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.425">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
     </ScrollView>
 
     <ScrollView
@@ -43,10 +39,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.425">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
     </ScrollView>
 
     <Button
@@ -54,7 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"
-        android:text="<---"
+        android:text="@string/arrow"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -73,7 +65,7 @@
         android:id="@+id/cancel_alarm_button"
         android:layout_width="204dp"
         android:layout_height="wrap_content"
-        android:text="cancel"
+        android:text="@string/cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -85,7 +77,7 @@
         android:background="@null"
         android:ems="15"
         android:inputType="textPersonName"
-        android:text="New Alarm"
+        android:text="@string/new_alarm"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
