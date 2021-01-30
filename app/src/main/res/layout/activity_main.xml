@@ -29,7 +29,7 @@
     </androidx.recyclerview.widget.RecyclerView>
 
     <Button
-        android:id="@+id/add_button"
+        android:id="@+id/add_alarm_button"
         android:layout_width="55dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
