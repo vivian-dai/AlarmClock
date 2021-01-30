@@ -6,17 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity" >
 
-    <!--nav buttons-->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/alarm_nav_buttons"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:padding="4dp"
-        tools:listitem="@layout/alarm_nav_buttons_view">
-
-    </androidx.recyclerview.widget.RecyclerView>
-
     <!--recycler view-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/alarm_recycler_view"
@@ -40,5 +29,8 @@
         android:layout_marginRight="8dp"
         android:text="+" />
 
+    <!--nav buttons-->
+    <include
+        layout="@layout/alarm_nav_buttons_view"/>
 
 </RelativeLayout>

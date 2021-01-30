@@ -4,7 +4,9 @@ package com.v341196137.alarmclock
 // Android libraries
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
+import androidx.annotation.IdRes
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.LinkedList
 
@@ -28,10 +30,10 @@ class MainActivity : AppCompatActivity() {
         //button listeners
         // TODO: figure out if to use .setContentView or .addView
         // Button listeners on acitivty_main.xml
-        alarmButton.setOnClickListener() { switchToAlarm() }
-        timerButton.setOnClickListener() { switchToTimer() }
-        stopwatchButton.setOnClickListener() { switchToStopwatch() }
-        add_alarm_button.setOnClickListener(){ switchToAddView() }
+        alarmButton.setOnClickListener() {switchToView(R.layout.activity_main) } //currently operating under the assumption main view is alarm view
+        timerButton.setOnClickListener() { switchToView(R.layout.timer_view)}
+        stopwatchButton.setOnClickListener() { switchToView(R.layout.stopwatch_view) }
+        add_alarm_button.setOnClickListener(){ switchToView(R.layout.add_alarm_view) }
         // Button listeners on add_alarm_view.xml
     }
     private fun generateList() : LinkedList<AlarmData> {
@@ -41,20 +43,12 @@ class MainActivity : AppCompatActivity() {
         return alarmList
     }
 
-    // i think you can just do setContentView(R.layout.______)
-//TODO: hahahaha implement all this
-    fun switchToAlarm() {
-
+    /**
+     * Sets the context view to the passed in view
+     * @param view the Int ID for the view
+     */
+    private fun switchToView(view: Int){
+        setContentView(view)
     }
 
-    fun switchToTimer() {
-
-    }
-
-    fun switchToStopwatch() {
-
-    }
-    private fun switchToAddView(){
-        setContentView(R.layout.add_alarm_view)
-    }
 }
