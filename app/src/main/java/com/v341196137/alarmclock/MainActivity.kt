@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
 
 
         //button listeners
+        // TODO: figure out if to use .setContentView or .addView
         alarmButton.setOnClickListener() { switchToAlarm() }
         timerButton.setOnClickListener() { switchToTimer() }
         stopwatchButton.setOnClickListener() { switchToStopwatch() }
@@ -53,6 +54,6 @@ class MainActivity : AppCompatActivity() {
 
     }
     private fun switchToAddView(){
-        setContentView()
+        setContentView(R.layout.add_alarm_view)
     }
 }
