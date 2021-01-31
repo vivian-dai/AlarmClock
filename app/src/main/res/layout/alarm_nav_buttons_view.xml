@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginBottom="16dp">
 
     <Button
 
@@ -12,7 +13,8 @@
         android:layout_height="wrap_content"
         android:text="@string/alarm_tab"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/timer_button"/>
 
     <Button
         android:id="@+id/timer_button"
@@ -20,7 +22,8 @@
         android:layout_height="wrap_content"
         android:text="@string/timer_tab"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/alarm_button"/>
+        app:layout_constraintStart_toEndOf="@id/alarm_button"
+        app:layout_constraintEnd_toStartOf="@+id/stopwatch_button"/>
 
     <Button
         android:id="@+id/stopwatch_button"
@@ -28,6 +31,7 @@
         android:layout_height="wrap_content"
         android:text="@string/stopwatch_tab"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/timer_button"/>
+        app:layout_constraintStart_toEndOf="@id/timer_button"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
