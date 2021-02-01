@@ -17,7 +17,8 @@ class MainActivity : AppCompatActivity() {
     private var stopwatchRunning: Boolean = false
     private var stopwatchInitiated: Boolean = false
     private var timeDifference: Long = 0
-    private lateinit var stopwatch: Chronometer
+    private var lastTime: Long = 0
+    //private lateinit var stopwatch: Chronometer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -99,17 +100,19 @@ class MainActivity : AppCompatActivity() {
      * Does all necessary button and task initialization for when switching to stopwatch view
      */
     private fun initiateStopwatch(){
-//        if(!stopwatchInitiated){
-//            stopwatch = findViewById(R.id.stopwatch_chronometer)
-//            stopwatchInitiated = true
-//        }
-        stopwatch = findViewById(R.id.stopwatch_chronometer) //TODO: delete this later after figuring out how to make chronometer work properly
+        var stopwatch: Chronometer = findViewById(R.id.stopwatch_chronometer) //TODO: delete this later after figuring out how to make chronometer work properly
+        if(!stopwatchRunning){
+            stopwatch.base = SystemClock.elapsedRealtime() - timeDifference
+        }else{
+            stopwatch.base = SystemClock.elapsedRealtime() - lastTime
+            stopwatch.start()
+            stopwatchRunning = true
+        }
         initiateNavButtons()
         val startButton: Button = findViewById(R.id.start_button)
         val stopButton: Button = findViewById(R.id.stop_button)
         val resetButton: Button = findViewById(R.id.reset_button)
         startButton.setOnClickListener(){
-            Toast.makeText(this, "$stopwatchRunning", Toast.LENGTH_SHORT).show()
             if(!stopwatchRunning){
                 stopwatch.base = SystemClock.elapsedRealtime() - timeDifference
                 stopwatchRunning = true
@@ -117,7 +120,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
         stopButton.setOnClickListener(){
-            Toast.makeText(this, "$stopwatchRunning", Toast.LENGTH_SHORT).show()
             if(stopwatchRunning){
                 timeDifference = SystemClock.elapsedRealtime() - stopwatch.base
                 stopwatchRunning = false
@@ -125,9 +127,14 @@ class MainActivity : AppCompatActivity() {
             }
         }
         resetButton.setOnClickListener(){
-            Toast.makeText(this, "$stopwatch", Toast.LENGTH_SHORT).show()
             timeDifference = 0
+            lastTime = 0
             stopwatch.base = SystemClock.elapsedRealtime()
+        }
+        stopwatch.setOnChronometerTickListener {
+            if(stopwatchRunning){
+                lastTime = SystemClock.elapsedRealtime() - stopwatch.base
+            }
         }
     }
 
