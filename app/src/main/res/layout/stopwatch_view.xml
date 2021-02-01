@@ -8,7 +8,7 @@
         layout="@layout/alarm_nav_buttons_view"/>
 
     <Chronometer
-        android:id="@+id/timer_display"
+        android:id="@+id/stopwatch_chronometer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="36sp"
@@ -23,16 +23,25 @@
         android:layout_height="wrap_content"
         android:text="@string/start"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/stop_button"
-        app:layout_constraintTop_toBottomOf="@id/timer_display" />
+        app:layout_constraintEnd_toStartOf="@+id/stop_button"
+        app:layout_constraintTop_toBottomOf="@id/stopwatch_chronometer" />
 
     <Button
         android:id="@+id/stop_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/stop"
-        app:layout_constraintStart_toStartOf="@+id/start_button"
+        app:layout_constraintStart_toEndOf="@+id/start_button"
+        app:layout_constraintEnd_toStartOf="@id/reset_button"
+        app:layout_constraintTop_toBottomOf="@id/stopwatch_chronometer"/>
+
+    <Button
+        android:id="@+id/reset_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset"
+        app:layout_constraintStart_toEndOf="@+id/stop_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/timer_display"/>
+        app:layout_constraintTop_toBottomOf="@id/stopwatch_chronometer"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

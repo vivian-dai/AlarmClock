@@ -4,7 +4,9 @@ package com.v341196137.alarmclock
 // Android libraries
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.SystemClock
 import android.widget.Button
+import android.widget.Chronometer
 import android.widget.Toast
 import java.util.LinkedList
 
@@ -12,9 +14,15 @@ import java.util.LinkedList
 // main hub for changing layouts and views and stuff
 // buttononclick events to change layouts when clicked on
 class MainActivity : AppCompatActivity() {
+    private var stopwatchRunning: Boolean = false
+    private var stopwatchInitiated: Boolean = false
+    private var timeDifference: Long = 0
+    private lateinit var stopwatch: Chronometer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        //variables
         var alarmList = LinkedList<AlarmData>()
 
         initiateAlarmViewButtons()
@@ -63,7 +71,7 @@ class MainActivity : AppCompatActivity() {
         stopwatchButton.setOnClickListener() {
             Toast.makeText(this, "stopwatch button pressed", Toast.LENGTH_SHORT).show()
             switchToView(R.layout.stopwatch_view)
-            initiateStopwatchButtons()
+            initiateStopwatch()
         }
     }
 
@@ -88,10 +96,39 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Does all necessary button initialization for when switching to stopwatch view
+     * Does all necessary button and task initialization for when switching to stopwatch view
      */
-    private fun initiateStopwatchButtons(){
+    private fun initiateStopwatch(){
+//        if(!stopwatchInitiated){
+//            stopwatch = findViewById(R.id.stopwatch_chronometer)
+//            stopwatchInitiated = true
+//        }
+        stopwatch = findViewById(R.id.stopwatch_chronometer) //TODO: delete this later after figuring out how to make chronometer work properly
         initiateNavButtons()
+        val startButton: Button = findViewById(R.id.start_button)
+        val stopButton: Button = findViewById(R.id.stop_button)
+        val resetButton: Button = findViewById(R.id.reset_button)
+        startButton.setOnClickListener(){
+            Toast.makeText(this, "$stopwatchRunning", Toast.LENGTH_SHORT).show()
+            if(!stopwatchRunning){
+                stopwatch.base = SystemClock.elapsedRealtime() - timeDifference
+                stopwatchRunning = true
+                stopwatch.start()
+            }
+        }
+        stopButton.setOnClickListener(){
+            Toast.makeText(this, "$stopwatchRunning", Toast.LENGTH_SHORT).show()
+            if(stopwatchRunning){
+                timeDifference = SystemClock.elapsedRealtime() - stopwatch.base
+                stopwatchRunning = false
+                stopwatch.stop()
+            }
+        }
+        resetButton.setOnClickListener(){
+            Toast.makeText(this, "$stopwatch", Toast.LENGTH_SHORT).show()
+            timeDifference = 0
+            stopwatch.base = SystemClock.elapsedRealtime()
+        }
     }
 
     /**
