@@ -1,8 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <include
         layout="@layout/alarm_nav_buttons_view"/>
+
+    <EditText
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/timer_time_input"
+        android:inputType="time"
+        android:hint="@string/timer_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints="@string/_12_00" />
+
+    <Button
+        app:layout_constraintTop_toBottomOf="@+id/timer_time_input"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/stop_timer"
+        android:text="@string/start"
+        android:id="@+id/start_timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        app:layout_constraintStart_toEndOf="@id/start_timer"
+        app:layout_constraintTop_toBottomOf="@+id/timer_time_input"
+        app:layout_constraintEnd_toStartOf="@+id/reset_timer"
+        android:id="@+id/stop_timer"
+        android:text="@string/stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        app:layout_constraintTop_toBottomOf="@id/timer_time_input"
+        app:layout_constraintStart_toEndOf="@id/stop_timer"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/reset_timer"
+        android:text="@string/reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
