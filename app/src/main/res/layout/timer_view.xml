@@ -7,6 +7,15 @@
     <include
         layout="@layout/alarm_nav_buttons_view"/>
 
+    <Chronometer
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/timer_time_input"
+        android:id="@+id/timer_chronometer"
+        android:textSize="36sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:countDown="true" />
     <EditText
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -15,6 +24,7 @@
         android:id="@+id/timer_time_input"
         android:inputType="time"
         android:hint="@string/timer_time"
+        android:textSize="36sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autofillHints="@string/_12_00" />
@@ -45,5 +55,6 @@
         android:text="@string/reset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

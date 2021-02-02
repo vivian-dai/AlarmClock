@@ -5,10 +5,11 @@ package com.v341196137.alarmclock
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.SystemClock
-import android.widget.Button
-import android.widget.Chronometer
-import android.widget.Toast
-import java.util.LinkedList
+import android.widget.*
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 // do most of our work in here
 // main hub for changing layouts and views and stuff
@@ -18,7 +19,6 @@ class MainActivity : AppCompatActivity() {
     private var stopwatchInitiated: Boolean = false
     private var timeDifference: Long = 0
     private var lastTime: Long = 0
-    //private lateinit var stopwatch: Chronometer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
         timerButton.setOnClickListener() {
             Toast.makeText(this, "timer button pressed", Toast.LENGTH_SHORT).show()
             switchToView(R.layout.timer_view)
-            initiateTimerViewButtons()
+            initiateTimerView()
         }
         stopwatchButton.setOnClickListener() {
             Toast.makeText(this, "stopwatch button pressed", Toast.LENGTH_SHORT).show()
@@ -90,10 +90,38 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Does all button initialization necessary when switching to timer view
+     * Does all initialization necessary when switching to timer view
      */
-    private fun initiateTimerViewButtons(){
+    private fun initiateTimerView(){
+        val startButton: Button = findViewById(R.id.start_timer)
+        val stopButton: Button = findViewById(R.id.stop_timer)
+        val resetButton: Button = findViewById(R.id.reset_timer)
         initiateNavButtons()
+        startButton.setOnClickListener(){
+            val timeString: String = findViewById<EditText>(R.id.timer_time_input).text.toString()
+            var colonCount = 0
+            for(letter in timeString){
+                if(letter == ':'){
+                    colonCount++
+                }
+            }
+            if(colonCount == 2){
+                val format: SimpleDateFormat = SimpleDateFormat("HH:mm:ss")
+                val time: Date = format.parse(timeString)
+            }else if(colonCount == 1){
+                val format: SimpleDateFormat = SimpleDateFormat("mm:ss")
+                val time: Date = format.parse(timeString)
+            }else{
+                //handle the bad not valid things
+                Toast.makeText(this, "Please insert a valid time!!!", Toast.LENGTH_LONG).show()
+            }
+        }
+        stopButton.setOnClickListener(){
+
+        }
+        resetButton.setOnClickListener(){
+
+        }
     }
 
     /**
