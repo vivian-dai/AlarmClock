@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.os.SystemClock
 import android.view.Gravity
 import android.widget.*
+import java.text.SimpleDateFormat
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.add_alarm_view.*
 import java.text.SimpleDateFormat
