@@ -17,11 +17,6 @@ import java.util.LinkedList
 // main hub for changing layouts and views and stuff
 // buttononclick events to change layouts when clicked on
 class MainActivity : AppCompatActivity() {
-    private var stopwatchRunning:Boolean = false
-    private var stopwatchInitiated: Boolean = false
-    private var timeDifference: Long = 0
-    private var lastTime: Long = 0
-
     private val hourIDConstant = 600
     private val minuteIDConstant = 750
     private var hourSelected = 70
