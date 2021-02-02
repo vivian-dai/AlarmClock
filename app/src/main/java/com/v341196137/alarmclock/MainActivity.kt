@@ -9,7 +9,6 @@ import android.os.SystemClock
 import android.view.Gravity
 import android.widget.*
 import java.text.SimpleDateFormat
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.add_alarm_view.*
 import java.util.*
 
@@ -23,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     private var hourSelected = 70
     private var minuteSelected = 70
     //private lateinit var stopwatch: Chronometer
-    private val FIVE_HOURS: Long = 18000000
+    private val fiveHours: Long = 18000000
     private var stopwatchRunning: Boolean = false
     private var stopwatchInitiated: Boolean = false
     private var timeDifference: Long = 0
@@ -138,7 +137,7 @@ class MainActivity : AppCompatActivity() {
                 val format: SimpleDateFormat = SimpleDateFormat("HH:mm:ss")
                 val time: Date = format.parse(timeString)
                 if(!timerRunning){
-                    timer.base = SystemClock.elapsedRealtime() - timerTimeDifference + time.time - FIVE_HOURS
+                    timer.base = SystemClock.elapsedRealtime() - timerTimeDifference + time.time - fiveHours
                     timer.start()
                     timerRunning = true
                 }
@@ -146,7 +145,7 @@ class MainActivity : AppCompatActivity() {
                 val format: SimpleDateFormat = SimpleDateFormat("mm:ss")
                 val time: Date = format.parse(timeString)
                 if(!timerRunning){
-                    timer.base = SystemClock.elapsedRealtime() - timerTimeDifference + time.time - FIVE_HOURS
+                    timer.base = SystemClock.elapsedRealtime() - timerTimeDifference + time.time - fiveHours
                     timer.start()
                     timerRunning = true
                 }
