@@ -10,7 +10,8 @@ import android.view.Gravity
 import android.widget.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.add_alarm_view.*
-import java.util.LinkedList
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 // do most of our work in here
