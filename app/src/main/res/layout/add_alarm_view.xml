@@ -15,8 +15,9 @@
 
     <ScrollView
         android:id="@+id/hour_scroll_view"
-        android:layout_width="207dp"
-        android:layout_height="298dp"
+        android:layout_width="205dp"
+        android:layout_height="326dp"
+        android:fillViewport="true"
         android:scrollbars="none"
         app:layout_constraintBottom_toTopOf="@+id/confirm_alarm_button"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,12 +26,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.425">
 
+        <LinearLayout
+            android:id="@+id/hour_linear_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|center_horizontal|center_vertical"
+            android:orientation="vertical" />
     </ScrollView>
 
     <ScrollView
         android:id="@+id/minute_scroll_view"
-        android:layout_width="207dp"
-        android:layout_height="298dp"
+        android:layout_width="205dp"
+        android:layout_height="326dp"
         android:scrollbars="none"
         app:layout_constraintBottom_toTopOf="@+id/confirm_alarm_button"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,16 +46,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.425">
 
+        <LinearLayout
+            android:id="@+id/minute_linear_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"></LinearLayout>
     </ScrollView>
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:text="@string/arrow"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -71,14 +74,15 @@
 
     <EditText
         android:id="@+id/alarm_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="383dp"
+        android:layout_height="40dp"
         android:layout_marginTop="72dp"
         android:background="@null"
         android:ems="15"
         android:inputType="textPersonName"
         android:text="@string/new_alarm"
         android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

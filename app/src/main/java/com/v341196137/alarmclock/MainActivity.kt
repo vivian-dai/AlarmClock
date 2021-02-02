@@ -2,26 +2,37 @@ package com.v341196137.alarmclock
 // Kotlin libraries
 
 // Android libraries
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.SystemClock
-import android.widget.Button
-import android.widget.Chronometer
-import android.widget.Toast
+import android.view.Gravity
+import android.widget.*
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.add_alarm_view.*
 import java.util.LinkedList
+
 
 // do most of our work in here
 // main hub for changing layouts and views and stuff
 // buttononclick events to change layouts when clicked on
 class MainActivity : AppCompatActivity() {
-    private var stopwatchRunning: Boolean = false
+    private var stopwatchRunning:Boolean = false
     private var stopwatchInitiated: Boolean = false
     private var timeDifference: Long = 0
     private var lastTime: Long = 0
+
+    private val hourIDConstant = 600
+    private val minuteIDConstant = 750
+    private var hourSelected = 70
+    private var minuteSelected = 70
     //private lateinit var stopwatch: Chronometer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // Init textViews for adding alarm clock
+
 
         //variables
         var alarmList = LinkedList<AlarmData>()
@@ -31,7 +42,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Hi Sherwin you should javadoc this :P
+     * Hi Sherwin you should javadoc this :P <:( i HATE java docs
      * @return something something
      */
     private fun generateList() : LinkedList<AlarmData> {
@@ -85,7 +96,7 @@ class MainActivity : AppCompatActivity() {
         addAlarmButton.setOnClickListener(){
             Toast.makeText(this, "add alarm button pressed", Toast.LENGTH_SHORT).show()
             switchToView(R.layout.add_alarm_view)
-            initiateAddAlarmButtons()
+            initiateAlarm()
         }
     }
 
@@ -112,6 +123,7 @@ class MainActivity : AppCompatActivity() {
         val startButton: Button = findViewById(R.id.start_button)
         val stopButton: Button = findViewById(R.id.stop_button)
         val resetButton: Button = findViewById(R.id.reset_button)
+        // you can just replace it with ids instead of this
         startButton.setOnClickListener(){
             if(!stopwatchRunning){
                 stopwatch.base = SystemClock.elapsedRealtime() - timeDifference
@@ -141,8 +153,75 @@ class MainActivity : AppCompatActivity() {
     /**
      * Initiates the buttons for add alarm
      */
-    private fun initiateAddAlarmButtons(){
+    private fun initiateAlarm(){
+        initiateHours()
+        initiateMinutes()
+        cancel_alarm_button.setOnClickListener(){
+            Toast.makeText(this, "Cancelled", Toast.LENGTH_SHORT).show()
+            setContentView(R.layout.activity_main)
+            initiateAlarmViewButtons()
+        }
+        confirm_alarm_button.setOnClickListener(){
+            Toast.makeText(this, "Created", Toast.LENGTH_SHORT).show()
+            setContentView(R.layout.activity_main)
+            initiateAlarmViewButtons()
+        }
 
+
+    }
+    /**
+     * Initiates the hours to select for the add alarm view
+     */
+    private fun initiateHours(){
+        for(i in 0..23){
+            val hour_add_view = TextView(this)
+            hour_add_view.id = i+hourIDConstant
+            hour_add_view.textSize = 45f
+            hour_add_view.setPadding(0, 50, 0, 50)
+            hour_add_view.gravity = Gravity.CENTER
+            if (i < 10)
+                hour_add_view.text = "0"+i.toString()
+            else
+                hour_add_view.text = i.toString()
+            hour_linear_view.addView(hour_add_view)
+            hour_add_view.setOnClickListener(){
+                if (hourSelected > 50){
+                    hour_add_view.setBackgroundColor(Color.parseColor("#ACCEF7"))
+                    hourSelected = i
+                } else{
+                    (findViewById(hourSelected+hourIDConstant) as TextView).setBackgroundColor(Color.parseColor("#FFFFFF"))
+                    hour_add_view.setBackgroundColor(Color.parseColor("#ACCEF7"))
+                    hourSelected = i
+                }
+            }
+        }
+    }
+    /**
+     * Initiates the minutes to select for the add alarm view
+     */
+    private fun initiateMinutes(){
+        for(i in 0..59) {
+            val minute_add_view = TextView(this)
+            minute_add_view.id = i+minuteIDConstant
+            minute_add_view.textSize = 45f
+            minute_add_view.setPadding(0, 50, 0, 50)
+            minute_add_view.gravity = Gravity.CENTER
+            if (i < 10)
+                minute_add_view.text = "0"+i.toString()
+            else
+                minute_add_view.text = i.toString()
+            minute_linear_view.addView(minute_add_view)
+            minute_add_view.setOnClickListener(){
+                if (minuteSelected > 65){
+                    minute_add_view.setBackgroundColor(Color.parseColor("#ACCEF7"))
+                    minuteSelected = i
+                } else{
+                    (findViewById(minuteSelected+minuteIDConstant) as TextView).setBackgroundColor(Color.parseColor("#FFFFFF"))
+                    minute_add_view.setBackgroundColor(Color.parseColor("#ACCEF7"))
+                    minuteSelected = i
+                }
+            }
+        }
     }
 
 }
