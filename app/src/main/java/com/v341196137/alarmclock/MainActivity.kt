@@ -6,26 +6,35 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.SystemClock
 import android.widget.*
-import java.text.DateFormat
 import java.text.SimpleDateFormat
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 // do most of our work in here
 // main hub for changing layouts and views and stuff
 // buttononclick events to change layouts when clicked on
 class MainActivity : AppCompatActivity() {
+    private val FIVE_HOURS: Long = 18000000
     private var stopwatchRunning: Boolean = false
     private var stopwatchInitiated: Boolean = false
     private var timeDifference: Long = 0
     private var lastTime: Long = 0
+    private lateinit var stopwatch: Chronometer
+    private lateinit var timer: Chronometer
+    private var timerRunning: Boolean = false
+    private var timerTimeDifference: Long = 0
+    private var lastTimerTime: Long = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //something sketchy we should all ignore
+        setContentView(R.layout.stopwatch_view)
+        stopwatch = findViewById(R.id.stopwatch_chronometer)
+        setContentView(R.layout.timer_view)
+        timer = findViewById(R.id.timer_chronometer)
+
         setContentView(R.layout.activity_main)
 
         //variables
         var alarmList = LinkedList<AlarmData>()
-
         initiateAlarmViewButtons()
 
     }
@@ -93,6 +102,13 @@ class MainActivity : AppCompatActivity() {
      * Does all initialization necessary when switching to timer view
      */
     private fun initiateTimerView(){
+        timer = findViewById(R.id.timer_chronometer) //:( why this needed
+        if(!timerRunning){
+            timer.base = SystemClock.elapsedRealtime() - timerTimeDifference
+        }else{
+            timer.base = SystemClock.elapsedRealtime() - lastTimerTime
+            timer.start()
+        }
         val startButton: Button = findViewById(R.id.start_timer)
         val stopButton: Button = findViewById(R.id.stop_timer)
         val resetButton: Button = findViewById(R.id.reset_timer)
@@ -108,19 +124,39 @@ class MainActivity : AppCompatActivity() {
             if(colonCount == 2){
                 val format: SimpleDateFormat = SimpleDateFormat("HH:mm:ss")
                 val time: Date = format.parse(timeString)
+                if(!timerRunning){
+                    timer.base = SystemClock.elapsedRealtime() - timerTimeDifference + time.time - FIVE_HOURS
+                    timer.start()
+                    timerRunning = true
+                }
             }else if(colonCount == 1){
                 val format: SimpleDateFormat = SimpleDateFormat("mm:ss")
                 val time: Date = format.parse(timeString)
+                if(!timerRunning){
+                    timer.base = SystemClock.elapsedRealtime() - timerTimeDifference + time.time - FIVE_HOURS
+                    timer.start()
+                    timerRunning = true
+                }
             }else{
                 //handle the bad not valid things
                 Toast.makeText(this, "Please insert a valid time!!!", Toast.LENGTH_LONG).show()
             }
         }
         stopButton.setOnClickListener(){
-
+            if(timerRunning){
+                timerTimeDifference = SystemClock.elapsedRealtime() - timer.base
+                timerRunning = false
+                timer.stop()
+            }
         }
         resetButton.setOnClickListener(){
-
+            timerTimeDifference = 0
+            timer.base = SystemClock.elapsedRealtime()
+        }
+        timer.setOnChronometerTickListener {
+            if(timerRunning){
+                lastTimerTime = SystemClock.elapsedRealtime() - timer.base
+            }
         }
     }
 
@@ -128,14 +164,13 @@ class MainActivity : AppCompatActivity() {
      * Does all necessary button and task initialization for when switching to stopwatch view
      */
     private fun initiateStopwatch(){
-        var stopwatch: Chronometer = findViewById(R.id.stopwatch_chronometer) //TODO: delete this later after figuring out how to make chronometer work properly
+        stopwatch = findViewById(R.id.stopwatch_chronometer) //TODO: delete this later after figuring out how to make chronometer work properly
         if(!stopwatchRunning){
             stopwatch.base = SystemClock.elapsedRealtime() - timeDifference
         }else{
             stopwatch.base = SystemClock.elapsedRealtime() - lastTime
             stopwatch.start()
-            stopwatchRunning = true
-        }
+        } //well for whatever reason the chronometer needs to be reinitialized or it doesn't work and that's a problem
         initiateNavButtons()
         val startButton: Button = findViewById(R.id.start_button)
         val stopButton: Button = findViewById(R.id.stop_button)
